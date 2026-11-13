@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 45 10% 95%;
+    --card: 240 10% 6%;
+    --card-foreground: 45 10% 95%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 45 10% 95%;
+    --primary: 38 75% 55%;
+    --primary-foreground: 240 10% 4%;
+    --secondary: 240 6% 14%;
+    --secondary-foreground: 45 10% 90%;
+    --muted: 240 6% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 38 75% 55%;
+    --accent-foreground: 240 10% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 18%;
+    --input: 240 6% 18%;
+    --ring: 38 75% 55%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: #ece7dc;
+    color: #2b2721;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+  img, video {
+    -webkit-user-drag: none;
+  }
+}
+
+/* Front-page Botanical Paper Wash Background - GPU Promoted */
+.paper-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #ece7dc;
+  background-image: url('/landing-pages/meng-to-sketchbook/bg-wash.jpg');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: strict;
+}
+
+.paper-wash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(236, 231, 220, 0.25) 0%, rgba(236, 231, 220, 0.72) 58%, #ece7dc 88%);
+  transform: translateZ(0);
+}
+
+/* GPU Compositor Utilities */
+.gpu-accel {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.threeui-background {
+  background: transparent !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #ece7dc;
+}
+::-webkit-scrollbar-thumb {
+  background: #dcd4c3;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c7bcab;
+}
+
+.shader-frame {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: transparent;
+}

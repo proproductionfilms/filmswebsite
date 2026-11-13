@@ -1,0 +1,2338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro Production Films</title>
+<meta name="description" content="designer, creator, AI educator — Singapore">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://drive.google.com" crossorigin>
+<link rel="preconnect" href="https://drive.usercontent.google.com" crossorigin>
+<link rel="preconnect" href="https://video.google.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://drive.google.com">
+<link rel="dns-prefetch" href="https://drive.usercontent.google.com">
+<link rel="dns-prefetch" href="https://video.google.com">
+<link rel="dns-prefetch" href="https://www.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Koulen&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;
+  src:url(meng-to-sketchbook/instrument-serif.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;
+  src:url(meng-to-sketchbook/instrument-serif-italic.woff2) format('woff2')}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 600;font-display:swap;
+  src:url(meng-to-sketchbook/newsreader.woff2) format('woff2')}
+
+:root{
+  --paper:#ece7dc;
+  --ink:#2b2721;
+  --ink-soft:rgba(43,39,33,.58);
+  --ink-faint:rgba(43,39,33,.36);
+  --hairline:rgba(43,39,33,.14);
+  --earth:#9a6a3e;
+  --display:'Instrument Serif',"New York",Georgia,'Times New Roman',serif;
+  --font:'Newsreader',"New York",Georgia,'Times New Roman',serif;
+  --track-caps:.24em;
+  --track-nav:.06em;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font);font-weight:400;background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:rgba(43,39,33,.85);color:var(--paper)}
+
+/* the painted ground the whole page sits on */
+.wash{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:url(meng-to-sketchbook/bg-wash.jpg) center top / cover no-repeat;
+  opacity:.85;
+}
+.wash:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(236,231,220,.25) 0%,rgba(236,231,220,.72) 58%,var(--paper) 88%);
+}
+
+/* ---------------- top bar ---------------- */
+.top{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;flex-direction:column;align-items:center;gap:11px;
+  padding-inline:clamp(16px,4vw,48px);padding-block:18px 64px;pointer-events:none;text-align:center;
+}
+.top>*{pointer-events:auto}
+.top:before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(240,236,226,.94),rgba(240,236,226,.7) 48%,rgba(240,236,226,0));
+  -webkit-backdrop-filter:blur(14px) saturate(.95);backdrop-filter:blur(14px) saturate(.95);
+  -webkit-mask-image:linear-gradient(180deg,#000 46%,transparent);
+  mask-image:linear-gradient(180deg,#000 46%,transparent);
+}
+.top .name{
+  font-family:var(--display);font-size:clamp(24px,2.4vw,30px);letter-spacing:.01em;
+  white-space:nowrap;line-height:1;
+}
+.top nav{
+  display:flex;gap:clamp(14px,2vw,26px);font-size:15px;align-items:center;justify-content:center;
+  letter-spacing:var(--track-nav);font-weight:300;
+}
+.top nav a{color:var(--ink-soft);transition:color .2s}
+.top nav a:hover,.top nav a[aria-current]{color:var(--ink)}
+.top nav .top-socials{
+  display:flex;align-items:center;gap:13px;margin-left:2px;padding-left:clamp(12px,1.6vw,20px);
+  border-left:1px solid var(--hairline);
+}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;padding:4px;color:var(--ink-soft);transition:color .2s}
+.icon-btn:hover{color:var(--ink)}
+.top .icon-btn svg{width:16px;height:16px;display:block}
+@media (max-width:640px){
+  .top{padding-inline:12px;padding-block:13px 50px;gap:8px}
+  .top .name{font-size:20px}
+  .top nav{gap:11px;font-size:13px}
+  .top nav .top-socials{gap:9px;padding-left:10px}
+  .top .icon-btn{padding:2px}
+  .top .icon-btn svg{width:14px;height:14px}
+}
+
+/* ---------------- hero ---------------- */
+.hero{
+  position:relative;display:grid;justify-items:center;align-content:center;
+  min-height:100svh;overflow-anchor:none;
+  padding:clamp(65px,8svh,85px) 0 clamp(16px,2.5svh,28px);
+}
+.botany{
+  display:none !important;
+}
+
+.hero-kicker{
+  display:none;
+}
+.hero-down{
+  display:none;
+}
+
+/* ---------------- sketchbook ---------------- */
+.hero,.hero *{-webkit-user-select:none;-moz-user-select:none;user-select:none}
+.hero img{-webkit-user-drag:none;user-drag:none}
+.sb-wrap{display:grid;justify-items:center;gap:clamp(10px,1.5vh,16px);width:100%;position:relative;z-index:2}
+.sb-stage{
+  display:flex;align-items:center;justify-content:center;width:100%;
+  position:relative;
+  touch-action:pan-y;
+}
+.sb-arrow{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 16px;min-width:44px;min-height:56px;
+  border:0;background:transparent;color:var(--ink-faint);cursor:pointer;
+  transition:color .2s ease, transform .2s ease;
+  -webkit-tap-highlight-color:transparent;position:relative;z-index:80;
+  touch-action:manipulation;
+}
+.sb-arrow:hover{color:var(--ink);transform:scale(1.2)}
+.sb-arrow:active{transform:scale(0.92)}
+
+/* The box is the book's own untransformed frame: the loupe lives here, on
+   the desk, while only .sb-tilt leans and scales underneath it. */
+.sb-3d{
+  position:relative;flex:1 1;min-width:0;max-width:min(860px, calc((100svh - 210px) * 1.419));
+  perspective:1750px;perspective-origin:50% 46%;
+}
+.sb-tilt{
+  position:relative;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--zoom,1));
+  will-change:transform;
+}
+.sb-book{position:relative;width:100%;aspect-ratio:1760/1240;transform-style:preserve-3d;z-index:1}
+
+/* The book sits on a surface, so its shadow is a soft pool underneath —
+   no box, no filter on the artwork, nothing with an edge of its own.
+   Both blobs fade to zero well inside their own bounds, and both ease
+   off while a leaf is in the air. */
+.sb-cast{position:absolute;pointer-events:none;z-index:0}
+.sb-cast.ambient{
+  left:5%;right:5%;top:27%;bottom:2%;
+  background:radial-gradient(50% 50% at 50% 58%,
+    rgba(58,44,26,.34) 0%,rgba(58,44,26,.19) 40%,rgba(58,44,26,0) 74%);
+  filter:blur(26px);
+  opacity:calc(1 - var(--shade,0) * .42);
+}
+.sb-cast.contact{
+  left:9%;right:9%;top:62%;bottom:10%;
+  background:radial-gradient(50% 44% at 50% 42%,
+    rgba(44,32,14,.40) 0%,rgba(44,32,14,.17) 48%,rgba(44,32,14,0) 78%);
+  filter:blur(11px);
+  opacity:calc(1 - var(--shade,0) * .5);
+}
+.sb-cast.hair{
+  left:12%;right:12%;top:70%;bottom:17%;
+  background:radial-gradient(50% 52% at 50% 40%,
+    rgba(40,28,10,.34) 0%,rgba(40,28,10,0) 76%);
+  filter:blur(4px);
+  opacity:calc(1 - var(--shade,0) * .62);
+}
+.sb-full{position:absolute;inset:0}
+.sb-full img{width:100%;height:auto;display:block}
+.sb-half{position:absolute;top:0;bottom:0;width:50%;overflow-x:clip;overflow-y:visible}
+.sb-half.left{left:0}
+.sb-half.right{left:50%}
+.sb-half-img{width:200%;max-width:none;height:auto;display:block}
+.sb-half-img.right{margin-left:-100%}
+/* the shadow the lifting leaf throws onto the page beneath it */
+.gutter-shade{
+  position:absolute;top:var(--pg,21.8%);bottom:var(--pg,21.8%);width:46%;
+  pointer-events:none;opacity:calc(var(--shade,0) * .62);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 5.2%,#000 94.8%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 5.2%,#000 94.8%,transparent 100%);
+}
+.gutter-shade.left{right:0;background:linear-gradient(270deg,rgba(52,38,20,.30),rgba(52,38,20,0) 82%)}
+.gutter-shade.right{left:0;background:linear-gradient(90deg,rgba(52,38,20,.24),rgba(52,38,20,0) 82%)}
+
+/* ---- the turning leaf: nested strips forming a curved surface ---- */
+.curl{
+  position:absolute;top:0;height:100%;
+  width:calc(var(--bw,0px) * var(--span));
+  transform-style:preserve-3d;z-index:6;
+}
+.curl.next{left:50%;transform-origin:left center;transform:rotateY(calc(-1 * var(--tt,0deg)))}
+.curl.prev{right:50%;transform-origin:right center;transform:rotateY(var(--tt,0deg))}
+.strip{
+  position:absolute;top:0;height:100%;
+  width:calc(var(--bw,0px) * var(--span) / var(--n));
+  transform-style:preserve-3d;
+}
+.curl.next .strip{transform-origin:left center}
+.curl.prev .strip{transform-origin:right center}
+.curl.next>.strip{left:0}
+.curl.prev>.strip{right:0;left:auto}
+.curl.next .strip .strip{left:100%;transform:rotateY(var(--td,0deg))}
+.curl.prev .strip .strip{right:100%;transform:rotateY(calc(-1 * var(--td,0deg)))}
+.face{
+  position:absolute;top:0;bottom:0;left:0;right:-1.1px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background-repeat:no-repeat;background-size:var(--bw,0px) auto;
+}
+.face.back{transform:rotateY(180deg)}
+.face .sh,.face .gl{
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 5.2%,#000 94.8%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 5.2%,#000 94.8%,transparent 100%);
+}
+.strip.edge .face .sh,.strip.edge .face .gl{
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%),var(--hf);
+  mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%),var(--hf);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+}
+.curl.next .strip.edge .face.front,.curl.prev .strip.edge .face.back{
+  --hf:linear-gradient(90deg,#000 0 22%,transparent 96%);
+}
+.curl.next .strip.edge .face.back,.curl.prev .strip.edge .face.front{
+  --hf:linear-gradient(270deg,#000 0 22%,transparent 96%);
+}
+.face .sh{position:absolute;left:0;right:0;top:var(--pg,21.8%);bottom:var(--pg,21.8%);pointer-events:none}
+.curl.next .face.front .sh,.curl.prev .face.back .sh{
+  background:linear-gradient(90deg,rgba(58,43,20,var(--a1,0)),rgba(58,43,20,var(--a2,0)));
+}
+.curl.next .face.back .sh,.curl.prev .face.front .sh{
+  background:linear-gradient(90deg,rgba(58,43,20,var(--a2,0)),rgba(58,43,20,var(--a1,0)));
+}
+.face .gl{
+  position:absolute;left:0;right:0;top:var(--pg,21.8%);bottom:var(--pg,21.8%);
+  pointer-events:none;background:#fffaf0;
+  opacity:calc(var(--shade,0) * var(--lit,1) * var(--lit,1) * .20);
+}
+
+/* ---- the loupe: a real magnifier lying on the page.  Pick it up and
+       drag it across the book; it stays where you put it. ---- */
+.loupe{
+  position:absolute;left:0;top:0;
+  width:var(--lr,270px);height:var(--lr,270px);
+  pointer-events:none;z-index:80;opacity:0;
+  transition:opacity .25s ease;
+  will-change:transform;
+}
+.loupe.on{opacity:1}
+.loupe.held .ring{cursor:grabbing}
+.loupe .ring{
+  position:absolute;inset:0;border-radius:50%;
+  pointer-events:auto;cursor:grab;
+  padding:calc(var(--lr,270px) * .058);
+  box-shadow:
+    0 1px 2px rgba(58,44,26,.30),
+    0 10px 18px rgba(58,44,26,.24),
+    0 26px 40px rgba(58,44,26,.20),
+    0 48px 66px rgba(58,44,26,.13);
+}
+/* the bezel is an annulus, so the glass really is see-through */
+.loupe .ring:before{
+  content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:linear-gradient(146deg,
+    #fdf7e9 0%,#e6d7b4 14%,#b69d70 32%,#7d6740 50%,
+    #cdbb92 66%,#f4ead3 80%,#9b8459 100%);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.8),
+    inset 0 -2px 3px rgba(70,52,26,.5);
+  -webkit-mask-image:radial-gradient(circle closest-side at 50% 50%,transparent 0 88.2%,#000 89.8% 100%);
+  mask-image:radial-gradient(circle closest-side at 50% 50%,transparent 0 88.2%,#000 89.8% 100%);
+}
+/* the handle, drawn before the bezel so the ring covers its inner end */
+.loupe .grip{
+  position:absolute;left:50%;top:50%;
+  width:calc(var(--lr,270px) * .74);height:calc(var(--lr,270px) * .125);
+  transform-origin:0 50%;
+  transform:rotate(40deg) translate(calc(var(--lr,270px) * .33),-50%);
+  border-radius:calc(var(--lr,270px) * .06);
+  pointer-events:auto;cursor:grab;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.46) 0 13%,rgba(255,255,255,0) 44%,
+                    rgba(0,0,0,.26) 100%),
+    linear-gradient(90deg,#d9bd82 0 14%,#a9884e 14% 20%,#6d4c2b 20% 62%,
+                    #5a3d22 62% 92%,#7a563180 92% 100%);
+  box-shadow:0 8px 15px rgba(58,44,26,.26),0 18px 26px rgba(58,44,26,.14);
+}
+.lens{
+  position:relative;display:block;width:100%;height:100%;border-radius:50%;
+  background-repeat:no-repeat;overflow:hidden;
+  box-shadow:
+    inset 0 0 0 1px rgba(52,40,22,.55),
+    inset 0 4px 12px rgba(40,30,14,.28),
+    inset 0 -7px 16px rgba(255,250,240,.14);
+}
+.lens .mag{display:none}
+/* A second copy of the book, sitting beside the glass outside the tilt, and
+   scaled about whichever page point the glass is currently over. */
+.zoomwrap{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2;
+  opacity:0;
+}
+.zoominner{position:absolute;inset:0;transform-origin:0 0}
+.lens:before,.lens:after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none}
+.lens:before{z-index:1}
+.lens:after{z-index:2}
+/* the glass bends and darkens toward its rim, with a faint colour fringe */
+.lens:before{
+  background:radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,0) 54%,rgba(58,44,26,.10) 76%,rgba(46,34,16,.34) 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(130,162,196,.26),
+    inset 0 0 0 4px rgba(206,158,112,.15);
+}
+/* the dome: one broad specular and a tight crescent opposite it */
+.lens:after{
+  background:
+    radial-gradient(36% 26% at 29% 19%,rgba(255,255,255,.30),rgba(255,255,255,0) 76%),
+    radial-gradient(24% 16% at 74% 86%,rgba(255,255,255,.12),rgba(255,255,255,0) 80%),
+    linear-gradient(150deg,rgba(255,255,255,.06) 0 18%,rgba(255,255,255,0) 42%);
+}
+
+/* ---- controls ---- */
+.sb-tools{
+  display:flex;align-items:center;gap:6px;
+  border:1px solid var(--hairline);border-radius:999px;
+  padding:5px 7px;background:rgba(250,246,238,.62);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.tool{
+  width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;
+  border:0;border-radius:50%;background:transparent;color:var(--ink-soft);
+  cursor:pointer;transition:background-color .18s ease,color .18s ease;
+}
+.tool:hover{background:rgba(255,252,244,.9);color:var(--ink)}
+.tool[aria-pressed="true"]{background:rgba(154,106,62,.16);color:var(--earth)}
+.tool:disabled{opacity:.32;cursor:default;background:transparent}
+.tool svg{width:15px;height:15px;display:block}
+.tool-sep{width:1px;height:17px;background:var(--hairline);margin:0 2px}
+.zoom-read{
+  font-size:11px;letter-spacing:.1em;color:var(--ink-faint);
+  min-width:40px;text-align:center;font-variant-numeric:tabular-nums;
+}
+@media (pointer:coarse){.loupe{display:none}}
+
+.sb-zone{position:absolute;top:0;bottom:0;border:0;background:transparent;cursor:grab;z-index:60;-webkit-tap-highlight-color:transparent}
+.sb-zone:active{cursor:grabbing}
+.sb-prev{left:0;width:50%}
+.sb-next{right:0;width:50%}
+
+/* ---- Caption & Play Button on Left ---- */
+.sb-caption-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  cursor: pointer;
+  padding: 4px 12px 4px 6px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+.sb-caption-row:hover {
+  background: rgba(43, 39, 33, 0.05);
+}
+.sb-caption-play {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(43, 39, 33, 0.22);
+  background: rgba(250, 246, 238, 0.95);
+  color: #2b2721;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(43, 39, 33, 0.08);
+  flex-shrink: 0;
+  padding: 0;
+  touch-action: manipulation;
+  opacity: 0;
+  transform: scale(0.2) rotate(-55deg);
+  pointer-events: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.sb-caption-play svg {
+  margin-left: 2px;
+  width: 9.5px;
+  height: 9.5px;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
+.sb-caption-play.animated-in {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  pointer-events: auto;
+  animation: play-pop-spring 0.48s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes play-pop-spring {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-55deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.18) rotate(5deg);
+  }
+  82% {
+    transform: scale(0.93) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+.sb-caption-row:hover .sb-caption-play.animated-in,
+.sb-caption-play.animated-in:hover {
+  background: #2b2721;
+  color: #f7f2e7;
+  border-color: #2b2721;
+  transform: scale(1.12) rotate(0deg);
+  box-shadow: 0 4px 10px rgba(43, 39, 33, 0.16);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.sb-caption-row:hover .sb-caption-play.animated-in svg,
+.sb-caption-play.animated-in:hover svg {
+  transform: scale(1.08);
+}
+.sb-caption-row:active .sb-caption-play.animated-in,
+.sb-caption-play.animated-in:active {
+  transform: scale(0.95) rotate(0deg);
+}
+.sb-caption-row:hover .sb-caption {
+  color: #2b2721;
+}
+.sb-captions {
+  display: grid;
+  justify-items: center;
+}
+.sb-captions > * {
+  grid-area: 1/1;
+  margin: 0;
+}
+.sb-caption {
+  font-size: 13px;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  animation: sb-cap-in 0.3s ease both;
+  transition: color 0.2s ease;
+}
+.sb-caption.live {
+  animation: none;
+}
+@keyframes sb-cap-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes sb-cap-out {
+  to { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-caption-play {
+    transition: none !important;
+    animation: none !important;
+  }
+  .sb-caption-play.animated-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+.sb-hint {
+  display: none;
+}
+.sb-hint.gone {
+  opacity: 0;
+}
+.sb-wrap.intro .sb-full img,.sb-wrap.intro .sb-half-img{filter:url(#sb-mblur-1)}
+.sb-wrap.intro.b2 .sb-full img,.sb-wrap.intro.b2 .sb-half-img{filter:url(#sb-mblur-2)}
+.sb-wrap.intro .sb-caption{animation:none}
+.sb-wrap.intro .sb-caption.cap-out{display:none}
+@media (max-width:640px){
+  .hero-kicker{font-size:10.5px;letter-spacing:.16em}
+  .sb-wrap{width:100vw;margin-inline:calc(50% - 50vw)}
+  .sb-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:80;padding:14px 10px;min-width:44px;min-height:56px}
+  .sb-arrow.left{left:4px}
+  .sb-arrow.right{right:4px}
+  .sb-arrow:hover{transform:translateY(-50%) scale(1.2)}
+  .sb-arrow:active{transform:translateY(-50%) scale(0.92)}
+  .sb-3d{max-width:none}
+  .sb-hint{font-size:9.5px;letter-spacing:.1em;padding:0 16px;text-align:center}
+}
+
+/* ---------------- painted rules + sections ---------------- */
+.rule{
+  display:block;width:min(1080px,86vw);margin:clamp(30px,6vh,64px) auto;
+  height:clamp(26px,4vw,46px);
+  background:url(meng-to-sketchbook/divider.png) center / 100% auto no-repeat;
+  opacity:.5;
+}
+.rule.short{width:min(420px,52vw);opacity:.4}
+.section-label{
+  font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 18px;
+}
+.about{
+  position:relative;max-width:1080px;margin:0 auto;
+  padding:0 clamp(20px,5vw,48px);
+  display:block;
+}
+.bio{font-size:clamp(17px,1.7vw,20px);line-height:1.74;letter-spacing:.005em;margin:0;font-weight:300;max-width:100%}
+.bio-link{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(43,39,33,.28);
+  text-underline-offset:4px;transition:text-decoration-color .2s}
+.bio-link:hover{text-decoration-color:var(--ink)}
+.bloom{display:none !important}
+
+.plates{max-width:1080px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.plate-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--hairline)}
+.plate{
+  display:grid;grid-template-columns:3.4em minmax(0,1fr) auto;gap:18px;align-items:baseline;
+  width:100%;padding:15px 4px;border:0;border-bottom:1px solid var(--hairline);
+  background:transparent;text-align:left;cursor:pointer;color:inherit;
+  transition:background-color .22s ease,padding-left .22s ease;
+}
+.plate:hover,.plate[aria-current="true"]{background:rgba(255,252,244,.5);padding-left:12px}
+.plate .n{font-size:12px;color:var(--ink-faint);letter-spacing:var(--track-nav)}
+.plate .t{font-family:var(--display);font-size:clamp(19px,2.1vw,26px)}
+.plate .p{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;text-align:right}
+.plate[aria-current="true"] .p{color:var(--earth)}
+
+.foot{display:none}
+
+/* ---- Pro Production Custom Footer ---- */
+.pro-footer {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  background: #342a21;
+  background: linear-gradient(180deg, #44372c 0%, #342a21 48%, #271f18 100%);
+  color: #ede5da;
+  border-top-left-radius: clamp(2rem, 5vw, 4.5rem);
+  border-top-right-radius: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1.25rem, 4vw, 4rem) clamp(2rem, 3vw, 2.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 -22px 55px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 20;
+  margin-top: clamp(3rem, 6vh, 6rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pro-footer-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pro-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .pro-footer-grid {
+    grid-template-columns: 7fr 5fr;
+    gap: 3.5rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.pro-footer-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pro-footer-headline {
+  font-family: 'Work Sans', -apple-system, sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  color: #ede5da;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 2rem;
+}
+
+.pro-footer-wordmark {
+  font-family: 'Koulen', Impact, sans-serif;
+  font-size: clamp(3.8rem, 8.5vw, 7.8rem);
+  line-height: 0.80;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  user-select: none;
+  margin: 0;
+}
+
+.pro-line-wrap {
+  overflow: hidden;
+  padding-bottom: 2px;
+}
+
+.pro-line {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  transform: translateY(115%);
+  opacity: 0;
+}
+
+.pro-line.is-revealed.pro-line-1 {
+  animation: revealLine 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.pro-line.is-revealed.pro-line-2 {
+  animation: revealLine 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+.pro-line.is-revealed.pro-line-3 {
+  animation: revealLine 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+}
+
+@keyframes revealLine {
+  0% {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.pro-footer-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 1024px) {
+  .pro-footer-right {
+    padding-left: 2rem;
+  }
+}
+
+.pro-footer-contact {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .pro-footer-contact {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+.pro-footer-email {
+  font-family: 'Work Sans', sans-serif;
+  font-size: clamp(1.2rem, 1.9vw, 1.85rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 6px;
+  transition: color 0.2s ease;
+  word-break: break-word;
+}
+
+.pro-footer-email:hover {
+  color: #c4a57b;
+}
+
+.pro-footer-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #9c9183;
+}
+
+.pro-footer-label {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9c9183;
+}
+
+.pro-footer-val {
+  font-family: 'Koulen', sans-serif;
+  letter-spacing: 0.05em;
+  color: #ede5da;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.pro-footer-val:hover {
+  color: #c4a57b;
+}
+
+.pro-footer-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.pro-footer-col-title {
+  font-family: 'Koulen', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #9c9183;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.pro-footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.pro-footer-nav a {
+  color: #d8cec0;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.pro-footer-nav a:hover {
+  color: #ffffff;
+}
+
+.pro-footer-connect {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: visible;
+}
+
+.pro-footer-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ede5da;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.pro-footer-linkedin:hover {
+  color: #c4a57b;
+}
+
+.pro-footer-li-badge {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pro-footer-linkedin:hover .pro-footer-li-badge {
+  background: #c4a57b;
+  color: #ffffff;
+}
+
+.pro-stamp-wrapper {
+  margin-top: 1.5rem;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  overflow: visible;
+  transform: translateX(-24px);
+}
+
+@media (min-width: 1024px) {
+  .pro-stamp-wrapper {
+    transform: translateX(-40px);
+  }
+}
+
+.pro-stamp-shockwave {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  pointer-events: none;
+}
+
+.pro-stamp-img-box {
+  width: clamp(190px, 20vw, 290px);
+  height: auto;
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+}
+
+.pro-stamp-img-box:hover {
+  transform: scale(1.04) rotate(-3deg);
+}
+
+.pro-stamp-img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+  filter: invert(1) brightness(0.95) contrast(1.1) drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+  opacity: 0.95;
+}
+
+.pro-footer-bottom {
+  width: 100%;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #9c9183;
+}
+
+@media (min-width: 640px) {
+  .pro-footer-bottom {
+    flex-direction: row;
+  }
+}
+
+.pro-footer-bottom a {
+  color: #d8cec0;
+  transition: color 0.2s ease;
+}
+
+.pro-footer-bottom a:hover {
+  color: #ffffff;
+}
+
+@keyframes stampSlam {
+  0% {
+    opacity: 0;
+    transform: scale(2.6) rotate(-26deg) translateY(-40px);
+    filter: blur(5px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.93) rotate(-9deg) translateY(0);
+    filter: blur(0px);
+  }
+  75% {
+    transform: scale(1.05) rotate(-6.5deg) translateY(0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1) rotate(-7.5deg) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes inkShockwave {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.7) rotate(-7.5deg);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.2) rotate(-7.5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45) rotate(-7.5deg);
+  }
+}
+
+
+/* ---- Home Video Screening Modal ---- */
+.home-video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 32px);
+  background: rgba(20, 16, 12, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.home-video-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.home-video-card {
+  position: relative;
+  width: min(960px, 94vw, calc((88vh - 70px) * 16 / 9));
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #16130f;
+  border: 1px solid rgba(196, 164, 114, 0.35);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+}
+.home-video-modal.open .home-video-card {
+  transform: scale(1);
+}
+.home-video-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #1c1813;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+.home-video-header .kicker {
+  display: block;
+  font-family: sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+.home-video-header .title {
+  margin: 2px 0 0;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(17px, 2vw, 23px);
+  color: #f6efe2;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+.home-video-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  padding: 0;
+}
+.home-video-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+.home-video-body {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.home-video-body iframe {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 50px);
+  border: 0;
+  display: block;
+}
+.home-video-body video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.home-video-shield {
+  display: none !important;
+}
+
+.film-player-pane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+.film-player-pane.multi {
+  position: relative;
+  overflow-y: auto;
+  max-height: calc(94vh - 72px);
+  background: #100e0b;
+}
+.film-player-pane iframe {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 50px);
+  border: 0;
+  display: block;
+}
+.film-player-pane video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.film-loading-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #14110d;
+  color: #c4a472;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+.film-loading-spinner.active {
+  opacity: 1;
+}
+.film-spinner-ring {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(196, 164, 114, 0.2);
+  border-top-color: #c4a472;
+  border-radius: 50%;
+  animation: filmSpin 0.75s linear infinite;
+}
+@keyframes filmSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Multi-Video Layout ---- */
+.home-video-card.multi-video {
+  width: min(1180px, 96vw);
+  max-height: 94vh;
+}
+.home-video-card.multi-video .home-video-body {
+  aspect-ratio: unset;
+  background: #100e0b;
+}
+.home-video-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.home-video-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.home-video-tab {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(246, 239, 226, 0.72);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+.home-video-tab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+.home-video-tab.active {
+  background: #c4a472;
+  color: #16130f;
+  font-weight: 600;
+}
+.home-video-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px 18px 20px;
+  background: #100e0b;
+  overflow-y: auto;
+  max-height: calc(94vh - 72px);
+}
+.home-video-item {
+  background: #171410;
+  border: 1px solid rgba(196, 164, 114, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.home-video-item-header {
+  padding: 10px 14px;
+  background: #1d1914;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.home-video-item-badge {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #16130f;
+  background: #c4a472;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.home-video-item-title {
+  margin: 0;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 17px;
+  color: #f6efe2;
+  font-weight: 400;
+}
+.home-video-item-player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+.home-video-item-player iframe {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 50px);
+  border: 0;
+  display: block;
+}
+.home-video-item-player video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+@media (max-width: 768px) {
+  .home-video-grid-2 {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 14px;
+  }
+  .home-video-tabs {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wash" aria-hidden="true"></div>
+<main class="page home">
+
+  <header class="top">
+    <a class="name" href="/" target="_top">Pro Production Films</a>
+    <nav>
+      <a href="/" target="_top" aria-current="page">Home</a>
+      <a href="/films" target="_top">Films</a>
+      <a href="/events" target="_top">Events</a>
+      <a href="/about" target="_top">About</a>
+      <a href="/contact" target="_top">Contact</a>
+    </nav>
+  </header>
+
+  <section id="sketchbook" class="hero">
+    <p class="hero-kicker">Corporate Films / Industrial Documentaries / Institutional Stories</p>
+
+    <div class="sb-wrap" id="sbWrap">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <filter id="sb-mblur-1"><feGaussianBlur stdDeviation="5 0"/></filter>
+        <filter id="sb-mblur-2"><feGaussianBlur stdDeviation="14 0"/></filter>
+      </svg>
+      <div class="sb-stage" id="sbStage">
+        <button class="sb-arrow left" id="sbLeft" aria-label="previous page">
+          <svg viewBox="0 0 14 44" width="16" height="46" fill="none" aria-hidden="true"><polyline points="11,3 3,22 11,41" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="sb-3d" id="sb3d">
+          <div class="sb-tilt" id="sbTilt">
+            <div class="sb-cast ambient" aria-hidden="true"></div>
+            <div class="sb-cast contact" aria-hidden="true"></div>
+            <div class="sb-cast hair" aria-hidden="true"></div>
+            <div class="sb-book" id="sbBook"></div>
+          </div>
+          <div class="zoomwrap" id="zoomWrap" aria-hidden="true"><div class="zoominner" id="zoomInner"></div></div>
+          <div class="loupe" id="loupe"><span class="grip"></span><span class="ring"><span class="lens" id="loupeLens"><span class="mag" id="loupeMag"></span></span></span></div>
+        </div>
+        <button class="sb-arrow right" id="sbRight" aria-label="next page">
+          <svg viewBox="0 0 14 44" width="16" height="46" fill="none" aria-hidden="true"><polyline points="3,3 11,22 3,41" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="sb-caption-row" id="sbCaptionRow" role="button" tabindex="0" aria-label="Watch film for this page">
+        <button type="button" id="bookPlayBtn" class="sb-caption-play" aria-label="Watch Film" title="Watch Film">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="7 4 20 12 7 20 7 4"/>
+          </svg>
+        </button>
+        <div class="sb-captions" id="sbCaptions"></div>
+      </div>
+      <div class="sb-tools" role="group" aria-label="view controls">
+        <button class="tool" id="zOut" aria-label="zoom out"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8.6" cy="8.6" r="5.6"/><path d="M12.8 12.8 17.4 17.4M6.2 8.6h4.8"/></svg></button>
+        <span class="zoom-read" id="zRead">100%</span>
+        <button class="tool" id="zIn" aria-label="zoom in"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8.6" cy="8.6" r="5.6"/><path d="M12.8 12.8 17.4 17.4M6.2 8.6h4.8M8.6 6.2v4.8"/></svg></button>
+        <span class="tool-sep" aria-hidden="true"></span>
+        <button class="tool" id="loupeBtn" aria-label="magnifier" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8.8" cy="8.8" r="5.8"/><path d="M13 13l4.4 4.4"/><path d="M6.4 7.2a3.2 3.2 0 0 1 2.4-1.4" opacity=".55"/></svg></button>
+      </div>
+      <p class="sb-hint" id="sbHint">Drag the page to turn · Drag the glass across it</p>
+    </div>
+
+    <button class="hero-down" id="heroDown" aria-label="scroll to about">
+      <svg viewBox="0 0 44 22" width="34" height="17" fill="none" aria-hidden="true">
+        <polyline points="3,3 22,11 41,3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="3,11 22,19 41,11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <section id="about" class="about">
+    <div>
+      <p class="bio">Pro Production Films creates documentaries that explore the stories behind industries, innovation, and the people who bring ideas to life. From the intricate workings of industrial spaces to the discoveries shaping science, research, and technology, our work captures real environments, processes, and perspectives with a thoughtful eye for detail. We look beyond what is immediately visible to uncover the stories, people, and purpose behind the work, bringing greater depth to the way we see the world around us. Through careful observation, visual storytelling, and an appreciation for the details that often go unnoticed, we transform real-world experiences into compelling narratives. Each documentary offers a closer look at the ideas, craftsmanship, and human effort that drive progress, revealing not just what happens, but the story behind why it matters.</p>
+    </div>
+  </section>
+
+  <div class="rule short" aria-hidden="true"></div>
+
+  <section id="plates" class="plates">
+    <p class="section-label">Films</p>
+    <ol class="plate-list" id="plateList"></ol>
+  </section>
+
+  <div class="rule short" aria-hidden="true" title="Pro Production Films"></div>
+
+  <!-- Pro Production Films Footer -->
+  <footer id="pro-footer" class="pro-footer">
+    <div class="pro-footer-inner">
+      <div class="pro-footer-grid">
+        
+        <!-- Left Column: Heading + PRO PRODUCTIONS display wordmark -->
+        <div class="pro-footer-left">
+          <p class="pro-footer-headline">
+            Got a film in mind?<br>
+            We're here to make it happen.
+          </p>
+
+          <div style="user-select:none;padding-top:1rem;">
+            <h2 aria-label="PRO PRODUCTION FILMS" class="pro-footer-wordmark">
+              <div class="pro-line-wrap"><span class="pro-line pro-line-1">PRO</span></div>
+              <div class="pro-line-wrap"><span class="pro-line pro-line-2">PRODUCTION</span></div>
+              <div class="pro-line-wrap"><span class="pro-line pro-line-3">FILMS</span></div>
+            </h2>
+          </div>
+        </div>
+
+        <!-- Right Column: Contact info & Links + Connect -->
+        <div class="pro-footer-right">
+          
+          <!-- Top Contact info: Right-aligned on desktop -->
+          <div class="pro-footer-contact">
+            <a href="mailto:connect@proproductionevents.in" class="pro-footer-email" target="_top">
+              connect@proproductionevents.in
+            </a>
+
+            <div class="pro-footer-line">
+              <span class="pro-footer-label">PHONE:</span>
+              <a href="tel:+918884567124" class="pro-footer-val" target="_top">+91 88845 67124</a>
+              <span style="color:#5e5447">•</span>
+              <a href="tel:+918884561212" class="pro-footer-val" target="_top">+91 88845 61212</a>
+            </div>
+
+            <div class="pro-footer-line">
+              <span class="pro-footer-label">WHATSAPP:</span>
+              <a href="https://wa.me/918884567124" target="_blank" rel="noopener noreferrer" class="pro-footer-val">
+                +91 88845 67124 <span style="font-size:10px">↗</span>
+              </a>
+              <span style="color:#5e5447">•</span>
+              <a href="https://wa.me/918884561212" target="_blank" rel="noopener noreferrer" class="pro-footer-val">
+                +91 88845 61212 <span style="font-size:10px">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Links and Connect Columns -->
+          <div class="pro-footer-cols">
+            
+            <!-- Column 1: Links -->
+            <div>
+              <span class="pro-footer-col-title">LINKS</span>
+              <nav class="pro-footer-nav">
+                <a href="/" target="_top">Home</a>
+                <a href="/films" target="_top">Films</a>
+                <a href="/events" target="_top">Events</a>
+                <a href="/about" target="_top">About</a>
+                <a href="/contact" target="_top">Contact</a>
+              </nav>
+            </div>
+
+            <!-- Column 2: Connect -->
+            <div class="pro-footer-connect">
+              <!-- Stamp Logo with dynamic apply animation -->
+              <div id="pro-stamp-wrap" class="pro-stamp-wrapper" title="Pro Production Films (Click to stamp)">
+                <div id="pro-stamp-shockwave" class="pro-stamp-shockwave"></div>
+                <div id="pro-stamp-box" class="pro-stamp-img-box">
+                  <img src="/stamp-logo-ink.png" alt="Pro Production Films Stamp Logo">
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Divider, Copyright & Location -->
+      <div class="pro-footer-bottom">
+        <p>© 2026 PRO PRODUCTION FILMS · All rights reserved.</p>
+        <p><a href="/contact" target="_top">Bengaluru, Karnataka, India</a></p>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<div id="homeVideoModal" class="home-video-modal" role="dialog" aria-modal="true" aria-label="Film Player">
+  <div class="home-video-card" id="homeVideoCard">
+    <div class="home-video-header">
+      <div class="home-video-header-left">
+        <span class="kicker" id="homeVideoKicker">Pro Production Films · Screening</span>
+        <h3 class="title" id="homeVideoTitle">Film Title</h3>
+      </div>
+      <div class="home-video-header-right">
+        <div class="home-video-tabs" id="homeVideoTabs" style="display:none"></div>
+        <button type="button" id="homeVideoCloseBtn" class="home-video-close" aria-label="Close video">&times;</button>
+      </div>
+    </div>
+    <div class="home-video-body" id="homeVideoBody"></div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   Meng To — sketchbook hero.
+   Spreads are transparent PNGs of an open sketchbook generated with
+   Higgsfield.  The leaf that turns is a real curved surface: a chain of
+   nested strips whose tangent sweeps through an arc, so the page bends
+   the way paper bends instead of pivoting like a flat door.
+   ===================================================================== */
+const Q=new URLSearchParams(location.search);
+const DIR='meng-to-sketchbook/';
+const PAGES=[
+  {file:'marina-bay-skyline.png', title:'Bangalore Division - South Western Railway', place:'Bengaluru'},
+  {file:'singapore-river.png',    title:'Indian Institute of Science',                place:'Bengaluru'},
+  {file:'botanic-gardens.png',    title:'Schneider Electric',                         place:'Bengaluru'},
+  {file:'marina-bay-sands.png',   title:'Kewaunee Scientific Corporation',            place:'Bengaluru'},
+  {file:'gardens-by-the-bay.png', title:'Bhuler',                                     place:'Bengaluru'},
+  {file:'merlion.png',            title:'AIMS Institutes',                            place:'Bengaluru'},
+  {file:'buddha-tooth.png',       title:'International Centre for Theoretical Sciences', place:'Bengaluru'}
+];
+PAGES.forEach(p=>p.url=DIR+p.file);
+const M=PAGES.length, LAND=0;
+
+const wrap=document.getElementById('sbWrap');
+const stage=document.getElementById('sbStage');
+const sb3d=document.getElementById('sb3d');
+const book=document.getElementById('sbBook');
+const capBox=document.getElementById('sbCaptions');
+const hint=document.getElementById('sbHint');
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ------------------------------------------------ the turning leaf */
+const N=18;            /* strips — enough for a smooth curve          */
+const SPAN=0.449;      /* gutter → outer page edge, as a fraction     */
+const BETA=0.60;       /* peak curl of the arc, radians              */
+let idx=0, turn=null;  /* turn = {dir, from, to, t}                   */
+let strips=[];         /* the chain, kept for per-frame lighting       */
+
+function el(t,c){const e=document.createElement(t);if(c)e.className=c;return e}
+function imgEl(i,side){
+  const im=new Image();im.className='sb-half-img '+side;
+  im.draggable=false;im.alt='';im.src=PAGES[i].url;return im;
+}
+
+function halfEl(pos,i){
+  const d=el('div','sb-half '+pos);
+  d.appendChild(imgEl(i,pos));
+  d.appendChild(el('div','gutter-shade '+pos));
+  return d;
+}
+/* build the strip chain once per turn; background offsets are pure
+   geometry, so they never need touching again while it animates */
+function buildCurl(dir,from,to){
+  strips=[];
+  const c=el('div','curl '+dir);
+  c.style.setProperty('--n',N);
+  c.style.setProperty('--span',SPAN);
+  let host=c;
+  for(let i=0;i<N;i++){
+    const s=el('div','strip');
+    s.style.setProperty('--i',i);
+    const gut='calc(var(--bw) * 0.5)';
+    const sw='calc(var(--bw) * '+SPAN+' / '+N+')';
+    const A='calc(-1 * ('+gut+' + '+i+' * '+sw+'))';         /* faces the from-page  */
+    const B='calc('+(i+1)+' * '+sw+' - '+gut+')';            /* faces the to-page    */
+    const f=el('div','face front'), b=el('div','face back');
+    const dress=(e,url,px)=>{
+      e.style.backgroundImage='url('+url+')';
+      e.style.backgroundPositionX=px;
+    };
+    dress(f,PAGES[from].url, dir==='next'?A:B);
+    dress(b,PAGES[to].url,   dir==='next'?B:A);
+    f.appendChild(el('div','sh'));f.appendChild(el('div','gl'));
+    b.appendChild(el('div','sh'));b.appendChild(el('div','gl'));
+    s.appendChild(f);s.appendChild(b);
+    if(i===N-1)s.classList.add('edge');
+    host.appendChild(s);host=s;
+    strips.push(s);
+  }
+  return c;
+}
+function applyTurn(t){
+  const th=Math.PI*t;                       /* how far the leaf has swung */
+  const beta=BETA*Math.sin(Math.PI*t);      /* it is flat at both ends    */
+  const D=180/Math.PI;
+  const tt=th+beta, td=2*beta/N;
+  sb3d.style.setProperty('--tt',(tt*D).toFixed(2)+'deg');
+  sb3d.style.setProperty('--td',(td*D).toFixed(3)+'deg');
+  sb3d.style.setProperty('--shade',Math.sin(Math.PI*t).toFixed(3));
+  fadeCaption(t);
+  for(let i=0;i<strips.length;i++){
+    const l1=Math.abs(Math.cos(tt-i*td));        /* facing at this strip's near edge */
+    const l2=Math.abs(Math.cos(tt-(i+1)*td));    /* ...and at its far edge           */
+    const st=strips[i].style;
+    st.setProperty('--lit',l1.toFixed(3));
+    st.setProperty('--a1',((1-l1)*.62).toFixed(3));
+    st.setProperty('--a2',((1-l2)*.62).toFixed(3));
+  }
+}
+
+var playEntranceTimer = null;
+function triggerPlayButtonEntrance() {
+  const btn = document.getElementById('bookPlayBtn');
+  if (!btn) return;
+  if (playEntranceTimer) {
+    clearTimeout(playEntranceTimer);
+    playEntranceTimer = null;
+  }
+  btn.classList.remove('animated-in');
+  if (typeof turn !== 'undefined' && turn) return;
+  if (typeof introOn !== 'undefined' && introOn) return;
+  
+  // Just after the text comes in, animate the play button in
+  playEntranceTimer = setTimeout(() => {
+    if ((typeof turn === 'undefined' || !turn) && (typeof introOn === 'undefined' || !introOn)) {
+      btn.classList.add('animated-in');
+    }
+  }, 260);
+}
+
+function updatePlayButtonTooltip() {
+  const btn = document.getElementById('bookPlayBtn');
+  if (btn && typeof idx !== 'undefined' && typeof PAGES !== 'undefined' && PAGES[idx]) {
+    btn.title = 'Watch Film: ' + PAGES[idx].title;
+    btn.setAttribute('aria-label', 'Watch Film: ' + PAGES[idx].title);
+  }
+}
+
+function paint(){
+  book.textContent='';
+  if(!turn){
+    const f=el('div','sb-full');
+    const im=new Image();im.src=PAGES[idx].url;im.alt=PAGES[idx].title;
+    im.draggable=false;
+    f.appendChild(im);book.appendChild(f);
+    sb3d.style.setProperty('--shade','0');
+  }else{
+    const next=turn.dir==='next';
+    book.appendChild(halfEl('left', next?turn.from:turn.to));
+    book.appendChild(halfEl('right',next?turn.to:turn.from));
+    book.appendChild(buildCurl(turn.dir,turn.from,turn.to));
+    applyTurn(turn.t);
+  }
+  const a=el('button','sb-zone sb-prev'),b=el('button','sb-zone sb-next');
+  a.setAttribute('aria-label','previous page');b.setAttribute('aria-label','next page');
+  book.appendChild(a);book.appendChild(b);
+  layout();
+  caption();
+  marks();
+  if(typeof syncZoomLayer==='function')syncZoomLayer();
+  if(typeof placeLoupe==='function')placeLoupe();
+  if(typeof updatePlayButtonTooltip==='function')updatePlayButtonTooltip();
+  if(typeof triggerPlayButtonEntrance==='function')triggerPlayButtonEntrance();
+  if(typeof onPageLanded==='function')onPageLanded(idx);
+}
+function caption(){
+  capBox.textContent='';
+  capOut=null;
+  if(turn){
+    capOut=el('p','sb-caption live');capOut.textContent=PAGES[turn.from].title;capBox.appendChild(capOut);
+    fadeCaption(turn.t);
+  }else{
+    const p=el('p','sb-caption');p.textContent=PAGES[idx].title;capBox.appendChild(p);
+  }
+}
+let capOut=null;
+function fadeCaption(t){
+  if(!capOut)return;
+  const out=1-Math.max(0,Math.min(1,(t-0.06)/0.34));
+  capOut.style.opacity=out.toFixed(3);
+}
+function layout(){
+  sb3d.style.setProperty('--bw',book.clientWidth+'px');
+}
+addEventListener('resize',layout);
+
+/* ------------------------------------------------------ spring loop */
+let spring=null;
+function animateTo(target,onDone,stiff,damp){
+  spring={kind:'spring',v:0,target:target,done:onDone,k:stiff||150,c:damp||22};
+  kick();
+}
+/* the riffle wants a fixed tempo, not a spring settling time */
+function tweenTo(target,dur,onDone){
+  spring={kind:'tween',from:turn?turn.t:0,target:target,dur:dur,e:0,done:onDone};
+  kick();
+}
+let raf=null,last=0;
+function tick(now){
+  raf=null;
+  const dt=Math.min(0.032,(now-last)/1000||0.016);last=now;
+  if(spring&&turn){
+    const s=spring;
+    if(s.kind==='tween'){
+      s.e+=dt;
+      const k=Math.min(1,s.e/s.dur);
+      turn.t=s.from+(s.target-s.from)*k;
+      applyTurn(turn.t);
+      if(k>=1){spring=null;const d=s.done;d&&d();}
+    }else{
+      const x=turn.t-s.target;
+      s.v+= (-s.k*x - s.c*s.v)*dt;
+      turn.t+=s.v*dt;
+      if(Math.abs(turn.t-s.target)<0.002&&Math.abs(s.v)<0.02){
+        turn.t=s.target;spring=null;
+        applyTurn(turn.t);
+        const d=s.done;d&&d();
+      }else applyTurn(turn.t);
+    }
+  }
+  viewSpring();
+  const lmoved=loupeEase();
+  /* kick() may already have queued the next frame from a done-callback */
+  if((spring||viewActive||lmoved)&&raf===null) raf=requestAnimationFrame(tick);
+}
+function kick(){ if(raf===null){last=performance.now();raf=requestAnimationFrame(tick);} }
+
+/* ------------------------------------------- tilt + zoom of the book */
+const TILT_X=4.5, TILT_Y=7;      /* degrees — deliberately restrained   */
+const ZOOM_MIN=0.9, ZOOM_MAX=1.5;
+const view={rx:0,ry:0,z:1, trx:0,try_:0,tz:1};
+let viewActive=false;
+let lastZ=1;
+function applyView(){
+  sb3d.style.setProperty('--rx',view.rx.toFixed(2)+'deg');
+  sb3d.style.setProperty('--ry',view.ry.toFixed(2)+'deg');
+  sb3d.style.setProperty('--zoom',view.z.toFixed(3));
+  /* the glass stays put, but the page under it has moved */
+  if(view.z!==lastZ){lastZ=view.z;if(typeof placeLoupe==='function')placeLoupe();}
+}
+function viewSpring(){
+  const e=0.14;
+  let moved=false;
+  for(const [k,t] of [['rx','trx'],['ry','try_'],['z','tz']]){
+    const d=view[t]-view[k];
+    if(Math.abs(d)>0.0006){view[k]+=d*e;moved=true;}
+    else view[k]=view[t];
+  }
+  if(moved)applyView();
+  viewActive=moved;
+  return moved;
+}
+function setView(rx,ry,z){
+  view.trx=Math.max(-TILT_X,Math.min(TILT_X,rx));
+  view.try_=Math.max(-TILT_Y,Math.min(TILT_Y,ry));
+  view.tz=Math.max(ZOOM_MIN,Math.min(ZOOM_MAX,z));
+  viewActive=true;kick();
+  if(typeof syncZoom==='function')syncZoom();
+}
+/* the book leans toward the cursor — no dragging, and never far */
+function tiltTo(cx,cy){
+  if(drag)return;                       /* hold still while a page is being turned */
+  const r=book.getBoundingClientRect();
+  if(!r.width)return;
+  const nx=Math.max(-1,Math.min(1,(cx-(r.left+r.width/2))/(r.width*0.62)));
+  const ny=Math.max(-1,Math.min(1,(cy-(r.top+r.height/2))/(r.height*0.9)));
+  setView(-ny*TILT_X, nx*TILT_Y, view.tz);
+}
+addEventListener('pointermove',e=>{
+  if(e.pointerType==='touch')return;
+  tiltTo(e.clientX,e.clientY);
+},{passive:true});
+addEventListener('pointerout',e=>{if(!e.relatedTarget)setView(0,0,view.tz)});
+addEventListener('blur',()=>setView(0,0,view.tz));
+/* the wheel belongs to the page — zoom is on the toolbar, or a double click
+   to come back to 100% */
+stage.addEventListener('dblclick',()=>setView(view.trx,view.try_,1));
+
+/* ------------------------------------------------------- pointer work */
+let drag=null;
+function bookRect(){return book.getBoundingClientRect()}
+function hideHint(){hint.classList.add('gone')}
+
+stage.addEventListener('pointerdown',e=>{
+  if(e.button!==0)return;
+  if(e.target.closest('.sb-arrow'))return;
+  e.preventDefault();                     /* no text selection, no image drag */
+  const onBook=e.target.closest('.sb-zone');
+  stage.setPointerCapture(e.pointerId);
+  hideHint();
+  if(!onBook||introOn)return;
+  const r=bookRect();
+  const dir=(e.clientX-r.left)/r.width>0.5?'next':'prev';
+  startTurn(dir,0);
+  drag={dir:dir,x0:e.clientX,w:r.width,moved:0,vel:0,tPrev:performance.now()};
+});
+stage.addEventListener('pointermove',e=>{
+  if(!drag)return;
+  const dx=e.clientX-drag.x0;
+  drag.moved=Math.max(drag.moved,Math.abs(dx));
+  const raw=(drag.dir==='next'? -dx : dx)/(drag.w*0.62);
+  const t=Math.max(0,Math.min(1,raw));
+  const now=performance.now();
+  drag.vel=(t-(turn?turn.t:0))/Math.max(0.001,(now-drag.tPrev)/1000);
+  drag.tPrev=now;
+  if(turn){turn.t=t;applyTurn(t);}
+});
+function endDrag(e){
+  if(!drag)return;
+  const d=drag;drag=null;
+  if(!turn)return;
+  if(d.moved<6){                              /* a tap, not a drag */
+    commit();return;
+  }
+  const go = turn.t>0.42 || d.vel>1.1;
+  if(go)commit(); else cancel();
+}
+stage.addEventListener('dragstart',e=>e.preventDefault());
+stage.addEventListener('selectstart',e=>e.preventDefault());
+stage.addEventListener('pointerup',endDrag);
+stage.addEventListener('pointercancel',endDrag);
+
+/* ------------------------------------------------------ turn control */
+function startTurn(dir,t){
+  spring=null;
+  if(turn){idx=turn.to;turn=null;}      /* settle anything still in flight */
+  if(typeof shoveLoupe==='function')shoveLoupe(dir);
+  const from=idx;
+  turn={dir:dir,from:from,to:dir==='next'?(from+1)%M:(from-1+M)%M,t:t||0};
+  paint();
+}
+function commit(){
+  if(!turn)return;
+  if(REDUCED){idx=turn.to;turn=null;paint();return;}
+  animateTo(1,()=>{idx=turn.to;turn=null;paint();},170,26);
+  kick();
+}
+function cancel(){
+  if(!turn)return;
+  animateTo(0,()=>{turn=null;paint();},150,24);
+  kick();
+}
+function step(dir){
+  if(introOn)endIntro();
+  if(turn){ /* finish whatever is in flight first */ idx=turn.to;turn=null; }
+  startTurn(dir,0);commit();
+}
+function goTo(i){
+  if(introOn)endIntro();
+  if(i===idx)return;
+  if(turn){idx=turn.to;turn=null;}
+  const fwd=(i-idx+M)%M, back=(idx-i+M)%M;
+  if(Math.min(fwd,back)===1){step(fwd===1?'next':'prev');return;}
+  idx=i;paint();
+}
+const bLeft = document.getElementById('sbLeft');
+const bRight = document.getElementById('sbRight');
+
+function attachArrowNav(btn, dir) {
+  if (!btn) return;
+  const trigger = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    hideHint();
+    step(dir);
+  };
+  btn.addEventListener('pointerdown', e => {
+    e.stopPropagation();
+  });
+  btn.addEventListener('click', trigger);
+}
+attachArrowNav(bLeft, 'prev');
+attachArrowNav(bRight, 'next');
+addEventListener('keydown',e=>{
+  if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  const t=e.target;
+  if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable))return;
+  e.preventDefault();hideHint();
+  step(e.key==='ArrowRight'?'next':'prev');
+});
+document.getElementById('heroDown').onclick=()=>{
+  document.getElementById('about').scrollIntoView({behavior:'smooth',block:'start'});
+};
+
+/* --------------------------------------------------- loupe + controls */
+const loupe=document.getElementById('loupe');
+const lens=document.getElementById('loupeLens');
+const mag=document.getElementById('loupeMag');
+const zRead=document.getElementById('zRead');
+const loupeBtn=document.getElementById('loupeBtn');
+const zInBtn=document.getElementById('zIn'), zOutBtn=document.getElementById('zOut');
+const MAG=2.3;
+const DESK=getComputedStyle(document.documentElement).getPropertyValue('--paper').trim()||'#ece7dc';
+let loupeOn=true, lx=null, ly=null, lgrab=null, lTarget=null;
+
+function loupeSize(){return Math.round(Math.max(165,Math.min(262,book.clientWidth*0.235)));}
+/* the loupe's own coordinate space: stage pixels in live mode (it sits
+   outside the book's transform), book pixels otherwise */
+function bookBox(){
+  return {x:0,y:0,w:book.clientWidth,h:book.clientHeight};
+}
+/* park it on the desk at the lower right, half off the book */
+function restLoupe(){
+  const b=bookBox();
+  lx=b.x+b.w*0.88; ly=b.y+b.h*0.855;
+  placeLoupe();
+}
+/* The glass sits above the tilt, in the book's untransformed pixels, so the
+   lean of the page never nudges it.  What the tilt does change is which part
+   of the paper is under the glass, and only the scale matters enough to
+   correct for: the book is drawn about its own centre. */
+const zoomWrap=document.getElementById('zoomWrap');
+const zoomInner=document.getElementById('zoomInner');
+/* mirror whatever the book is currently showing into the magnified copy */
+function syncZoomLayer(){
+  zoomInner.textContent='';
+  for(const c of book.children){
+    if(c.classList.contains('sb-zone'))continue;      /* hit targets need no copy */
+    zoomInner.appendChild(c.cloneNode(true));
+  }
+}
+function placeLoupe(){
+  if(lx===null)return;
+  const B=bookBox(), bw=B.w, bh=B.h;
+  if(!bw)return;
+  const R=loupeSize()/2, bez=R*2*0.058;
+  loupe.style.setProperty('--lr',R*2+'px');
+  loupe.style.transform='translate3d('+(lx-R).toFixed(1)+'px,'+(ly-R).toFixed(1)+'px,0)';
+  if(loupeOn)loupe.classList.add('on');
+
+  /* where the paper's edges actually land once the book is scaled */
+  const z=view.z, cx=bw/2, cy=bh/2;
+  const x0=cx+(bw*.051-cx)*z, x1=cx+(bw*.949-cx)*z;
+  const y0=cy+(bh*.218-cy)*z, y1=cy+(bh*.782-cy)*z;
+  /* How far the glass's own centre is inside the paper.  The copy fades out
+     as it wanders off the sheet, so you are left looking through plain
+     glass rather than at a sliver of page on flat desk. */
+  const nx=Math.max(x0,Math.min(lx,x1));
+  const ny=Math.max(y0,Math.min(ly,y1));
+  const inside=(lx>x0&&lx<x1&&ly>y0&&ly<y1)
+    ? Math.min(lx-x0, x1-lx, ly-y0, y1-ly)
+    : -Math.hypot(lx-nx,ly-ny);
+  const k=Math.max(0,Math.min(1,(inside+R*0.30)/(R*0.55)));
+
+  zoomWrap.style.opacity=(loupeOn?k:0).toFixed(3);
+  if(k<=0.002)return;
+  const r=(R-bez).toFixed(1);
+  const mask='radial-gradient(circle '+r+'px at '+lx.toFixed(1)+'px '+ly.toFixed(1)+'px,'
+    +'#000 calc(100% - 1px),transparent 100%)';
+  zoomWrap.style.webkitMaskImage=mask;
+  zoomWrap.style.maskImage=mask;
+  /* the page point beneath the glass, magnified about that same spot so the
+     lens keeps showing MAG times whatever is on screen */
+  const px=cx+(lx-cx)/z, py=cy+(ly-cy)/z, s=MAG*z;
+  zoomInner.style.transform='translate('+(lx-px*s).toFixed(1)+'px,'+(ly-py*s).toFixed(1)+'px) '
+    +'scale('+s.toFixed(4)+')';
+}
+/* the leaf shoves the glass aside as it sweeps past */
+function shoveLoupe(dir){
+  if(!loupeOn||lx===null||lgrab)return;
+  const b=bookBox();
+  /* which page point the glass covers, once the book's scale is undone */
+  const nx=(b.w/2+(lx-b.x-b.w/2)/view.z)/b.w, ny=(b.h/2+(ly-b.y-b.h/2)/view.z)/b.h;
+  if(nx<0.02||nx>0.98||ny<0.17||ny>0.83)return;      /* already clear of the page */
+  lTarget={x:b.x+b.w*(dir==='next'?0.12:0.88), y:b.y+b.h*0.855};
+  kick();
+}
+function loupeEase(){
+  if(!lTarget)return false;
+  if(lgrab){lTarget=null;return false;}
+  const dx=lTarget.x-lx, dy=lTarget.y-ly;
+  if(Math.abs(dx)<0.5&&Math.abs(dy)<0.5){lx=lTarget.x;ly=lTarget.y;lTarget=null;placeLoupe();return false;}
+  lx+=dx*0.17;ly+=dy*0.17;placeLoupe();
+  return true;
+}
+loupe.addEventListener('pointerdown',e=>{
+  if(!loupeOn||e.button!==0)return;
+  e.preventDefault();e.stopPropagation();     /* never starts a page turn */
+  lTarget=null;
+  lgrab={cx:e.clientX,cy:e.clientY,lx0:lx,ly0:ly};
+  loupe.classList.add('held');
+  loupe.setPointerCapture(e.pointerId);
+  hideHint();
+});
+loupe.addEventListener('pointermove',e=>{
+  if(!lgrab)return;
+  const b=bookBox(), R=loupeSize()/2;
+  /* the glass carries none of the book's transform, so the cursor maps 1:1 */
+  lx=Math.max(b.x-R*0.7,Math.min(b.x+b.w+R*0.7, lgrab.lx0+(e.clientX-lgrab.cx)));
+  ly=Math.max(b.y-R*0.7,Math.min(b.y+b.h+R*1.0, lgrab.ly0+(e.clientY-lgrab.cy)));
+  placeLoupe();
+});
+function dropLoupe(){lgrab=null;loupe.classList.remove('held');}
+loupe.addEventListener('pointerup',dropLoupe);
+loupe.addEventListener('pointercancel',dropLoupe);
+loupeBtn.onclick=()=>{
+  loupeOn=!loupeOn;
+  loupeBtn.setAttribute('aria-pressed',String(loupeOn));
+  loupe.classList.toggle('on',loupeOn);
+  if(loupeOn&&lx===null)restLoupe();
+};
+addEventListener('resize',()=>{lx=null;restLoupe();});
+
+function syncZoom(){
+  zRead.textContent=Math.round(view.tz*100)+'%';
+  zOutBtn.disabled=view.tz<=ZOOM_MIN+0.001;
+  zInBtn.disabled=view.tz>=ZOOM_MAX-0.001;
+}
+zInBtn.onclick=()=>{setView(view.trx,view.try_,view.tz*1.16);hideHint();};
+zOutBtn.onclick=()=>{setView(view.trx,view.try_,view.tz/1.16);hideHint();};
+
+/* --------------------------------------------------------- the index */
+const plateList=document.getElementById('plateList');
+PAGES.forEach((p,i)=>{
+  const li=el('li');
+  const b=el('button','plate');
+  b.innerHTML='<span class="n">'+String(i+1).padStart(2,'0')+'</span>'+
+              '<span class="t"></span><span class="p"></span>';
+  b.querySelector('.t').textContent=p.title;
+  b.querySelector('.p').textContent=p.place;
+  b.onclick=()=>{goTo(i);document.getElementById('sketchbook').scrollIntoView({behavior:'smooth',block:'center'});};
+  li.appendChild(b);plateList.appendChild(li);
+});
+function marks(){
+  const cur=turn?turn.to:idx;
+  plateList.querySelectorAll('.plate').forEach((b,i)=>b.setAttribute('aria-current',i===cur?'true':'false'));
+}
+
+/* ---------------------------------------------------------- the riffle */
+let riffle=null,riffleAt=0,introOn=false;
+function endIntro(){
+  introOn=false;wrap.classList.remove('intro','b2');
+}
+function riffleStep(){
+  const s=riffle[riffleAt];
+  wrap.classList.toggle('b2',s.bell>0.55);
+  startTurn('next',0);
+  tweenTo(1,s.dur,()=>{
+    idx=turn.to;turn=null;
+    riffleAt++;
+    if(introOn&&riffleAt<riffle.length){paint();riffleStep();}
+    else{endIntro();paint();}
+  });
+}
+function startIntro(){
+  if(Q.has('nointro')){idx=LAND;paint();return;}
+  const steps=M+LAND;
+  riffle=[];
+  for(let r=0;r<steps;r++){
+    const bell=Math.sin(Math.PI*(r/(steps-1)));
+    riffle.push({bell:bell,dur:0.26-0.19*bell});
+  }
+  riffleAt=0;introOn=true;wrap.classList.add('intro');
+  riffleStep();
+}
+
+/* ------------------------------------------------------------- boot */
+(async function boot(){
+  try {
+    idx=Q.has('shot')?(parseInt(Q.get('shot'),10)||0)%M:0;
+    paint();applyView();
+    await Promise.all(PAGES.map(p=>{
+      const im=new Image();im.src=p.url;
+      return im.decode?im.decode().catch(()=>{}):new Promise(r=>{im.onload=im.onerror=r});
+    }));
+    if(document.fonts&&document.fonts.ready)await document.fonts.ready.catch(()=>{});
+    syncZoom();restLoupe();
+    document.body.dataset.ready='1';
+    if(Q.has('shot')){
+      if(Q.has('t')){startTurn(Q.get('dir')||'next',parseFloat(Q.get('t')));}
+      return;
+    }
+    setTimeout(startIntro,220);
+  } catch(err) {
+    console.error('Boot error:', err);
+    setTimeout(startIntro, 220);
+  }
+})();
+
+document.querySelectorAll('.top a, .pro-footer a').forEach(a => {
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'navigate', href: href }, '*');
+    } else {
+      window.location.href = href;
+    }
+  });
+});
+
+/* ---- Pro Production Footer Observer ---- */
+(function() {
+  const footer = document.getElementById('pro-footer');
+  const stampBox = document.getElementById('pro-stamp-box');
+  const shockwave = document.getElementById('pro-stamp-shockwave');
+  if (!footer) return;
+
+  const lines = footer.querySelectorAll('.pro-line');
+
+  function applyEffects() {
+    lines.forEach(l => l.classList.add('is-revealed'));
+    if (stampBox) {
+      stampBox.style.animation = 'stampSlam 0.58s cubic-bezier(0.18, 0.89, 0.32, 1.25) forwards';
+    }
+    if (shockwave) {
+      shockwave.style.display = 'block';
+      shockwave.style.animation = 'inkShockwave 0.65s cubic-bezier(0.18, 0.89, 0.32, 1) forwards';
+    }
+  }
+
+  function resetEffects() {
+    lines.forEach(l => l.classList.remove('is-revealed'));
+    if (stampBox) {
+      stampBox.style.animation = 'none';
+      stampBox.style.opacity = '0';
+      stampBox.style.transform = 'scale(2.6) rotate(-26deg) translateY(-40px)';
+      stampBox.style.filter = 'blur(5px)';
+    }
+    if (shockwave) {
+      shockwave.style.display = 'none';
+      shockwave.style.animation = 'none';
+    }
+  }
+
+  resetEffects();
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        applyEffects();
+      } else {
+        resetEffects();
+      }
+    });
+  }, { threshold: 0.12 });
+
+  obs.observe(footer);
+
+  // Click to re-stamp
+  const wrap = document.getElementById('pro-stamp-wrap');
+  if (wrap) {
+    wrap.addEventListener('click', () => {
+      resetEffects();
+      setTimeout(applyEffects, 40);
+    });
+  }
+})();
+
+/* ---------------------------------------------------- film screening modal */
+const FILM_VIDEOS = [
+  {
+    title: "Bangalore Division — South Western Railway",
+    videoSrc: "/videos/railway.mp4",
+    driveUrl: "https://drive.google.com/file/d/1Mc2CpaIPt9IWtO-h6wpJCVrxwdMxXQ6R/preview"
+  },
+  {
+    title: "Indian Institute of Science",
+    videos: [
+      {
+        subtitle: "Film 1 · IISc",
+        videoSrc: "/videos/iisc-msc.mp4",
+        driveUrl: "https://drive.google.com/file/d/1zeOIkrNbubq6VB_-a8cRxXiJ0ak2NY8I/preview"
+      },
+      {
+        subtitle: "Film 2 · IISc",
+        videoSrc: "/videos/iisc-spell.mp4",
+        driveUrl: "https://drive.google.com/file/d/1g1pzGLR4I6GHuyIg7c6wd5Y-jAP3TwTK/preview"
+      }
+    ]
+  },
+  {
+    title: "Schneider Electric",
+    videoSrc: "/videos/schneider.mp4",
+    driveUrl: "https://drive.google.com/file/d/1qUR-DNEkjhObSY_kcSWSF733y1DkhKdw/preview"
+  },
+  {
+    title: "Kewaunee Scientific Corporation",
+    videoSrc: "/videos/kewaunee.mp4",
+    driveUrl: "https://drive.google.com/file/d/1OK-xFWIE6bImILskAqdgI5TiKj8WRd0j/preview"
+  },
+  {
+    title: "Bhuler",
+    videoSrc: "/videos/bhuler.mp4",
+    driveUrl: "https://drive.google.com/file/d/1fac-wui6LNJf835-gB_av_C-DaowWokM/preview"
+  },
+  {
+    title: "AIMS Institutes",
+    videoSrc: "/videos/aims.mp4",
+    driveUrl: "https://drive.google.com/file/d/15wYwLdfGjyM99MjIdOhpB8QqKrpS5TKW/preview"
+  },
+  {
+    title: "International Centre for Theoretical Sciences",
+    videoSrc: "/videos/icts.mp4",
+    driveUrl: "https://drive.google.com/file/d/1zGKGYpd7U5xbS-TyPsNtlxSG35bwHeAq/preview"
+  }
+];
+
+const FILM_CACHE = {};
+
+function getHomeVideoElements() {
+  return {
+    modal: document.getElementById('homeVideoModal'),
+    card: document.getElementById('homeVideoCard'),
+    title: document.getElementById('homeVideoTitle'),
+    kicker: document.getElementById('homeVideoKicker'),
+    tabs: document.getElementById('homeVideoTabs'),
+    body: document.getElementById('homeVideoBody'),
+    closeBtn: document.getElementById('homeVideoCloseBtn')
+  };
+}
+
+function getOrCreateFilmPane(filmIdx) {
+  if (FILM_CACHE[filmIdx]) {
+    return FILM_CACHE[filmIdx];
+  }
+
+  const film = FILM_VIDEOS[filmIdx] || FILM_VIDEOS[0];
+  const pane = document.createElement('div');
+  const isMulti = !!(film.videos && film.videos.length > 1);
+  pane.className = 'film-player-pane' + (isMulti ? ' multi' : '');
+  pane.id = 'filmPlayerPane_' + filmIdx;
+  pane.style.display = 'none';
+
+  if (isMulti) {
+    let gridHtml = '<div class="home-video-grid-2">';
+    film.videos.forEach((v, i) => {
+      let src = v.driveUrl;
+      gridHtml += '<div class="home-video-item" id="homeVideoItem_' + filmIdx + '_' + i + '">';
+      gridHtml += '  <div class="home-video-item-header">';
+      gridHtml += '    <span class="home-video-item-badge">Film ' + (i + 1) + '</span>';
+      gridHtml += '    <h4 class="home-video-item-title">' + (v.subtitle || ('Film ' + (i + 1))) + '</h4>';
+      gridHtml += '  </div>';
+      gridHtml += '  <div class="home-video-item-player">';
+      if (v.videoSrc) {
+        gridHtml += '    <video src="' + v.videoSrc + '" controls playsinline preload="metadata" onerror="this.style.display=\'none\';if(this.nextElementSibling)this.nextElementSibling.style.display=\'block\';" style="width:100%;height:100%;object-fit:contain;background:#000;display:block;"></video>';
+        gridHtml += '    <iframe src="' + src + '" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen style="display:none;position:absolute;top:-50px;left:0;width:100%;height:calc(100% + 50px);border:0;"></iframe>';
+      } else {
+        gridHtml += '    <iframe src="' + src + '" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+      }
+      gridHtml += '  </div>';
+      gridHtml += '</div>';
+    });
+    gridHtml += '</div>';
+    pane.innerHTML = gridHtml;
+  } else {
+    let src = film.driveUrl;
+    if (film.videoSrc) {
+      pane.innerHTML = `
+        <video src="${film.videoSrc}" controls playsinline preload="metadata" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='block';" style="width:100%;height:100%;object-fit:contain;background:#000;display:block;"></video>
+        ${src ? `<iframe src="${src}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen style="display:none;position:absolute;top:-50px;left:0;width:100%;height:calc(100% + 50px);border:0;"></iframe>` : ''}
+      `;
+    } else if (src) {
+      pane.innerHTML = `<iframe src="${src}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen style="width:100%;height:100%;border:0;"></iframe>`;
+    }
+  }
+
+  const { body } = getHomeVideoElements();
+  if (body) {
+    body.appendChild(pane);
+  }
+  FILM_CACHE[filmIdx] = pane;
+  return pane;
+}
+
+function prewarmFilm(filmIdx) {
+  try {
+    getOrCreateFilmPane(filmIdx);
+  } catch (e) {}
+}
+
+function onPageLanded(currentIdx) {
+  prewarmFilm(currentIdx);
+  setTimeout(() => {
+    const nextIdx = (currentIdx + 1) % FILM_VIDEOS.length;
+    prewarmFilm(nextIdx);
+  }, 1000);
+}
+
+function openCurrentFilm() {
+  const curIdx = typeof idx !== 'undefined' ? idx : 0;
+  const film = FILM_VIDEOS[curIdx] || FILM_VIDEOS[0];
+  const els = getHomeVideoElements();
+  if (!els.modal || !els.title || !els.body) {
+    console.warn('Film modal elements not ready in DOM');
+    return;
+  }
+  
+  els.title.textContent = film.title;
+  
+  // Hide all other panes in cache
+  Object.keys(FILM_CACHE).forEach(k => {
+    if (FILM_CACHE[k]) FILM_CACHE[k].style.display = 'none';
+  });
+
+  const pane = getOrCreateFilmPane(curIdx);
+  pane.style.display = 'block';
+
+  // Ensure all videos in this pane start paused until the user explicitly clicks play
+  const allVids = pane.querySelectorAll('video');
+  allVids.forEach(v => v.pause());
+
+  if (film.videos && film.videos.length > 1) {
+    if (els.card) els.card.classList.add('multi-video');
+    if (els.kicker) els.kicker.textContent = 'Pro Production Films · 2 Films';
+    
+    if (els.tabs) {
+      els.tabs.innerHTML = `
+        <button type="button" class="home-video-tab active" data-target="all">Both Films</button>
+        <button type="button" class="home-video-tab" data-target="0">Film 1</button>
+        <button type="button" class="home-video-tab" data-target="1">Film 2</button>
+      `;
+      els.tabs.style.display = 'inline-flex';
+      
+      const tabBtns = els.tabs.querySelectorAll('.home-video-tab');
+      tabBtns.forEach(btn => {
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const target = btn.getAttribute('data-target');
+          const items = pane.querySelectorAll('.home-video-item');
+          if (target === 'all') {
+            items.forEach(it => it.style.display = '');
+            const grid = pane.querySelector('.home-video-grid-2');
+            if (grid) grid.style.gridTemplateColumns = '';
+          } else {
+            const chosenIdx = parseInt(target, 10);
+            items.forEach((it, i) => {
+              it.style.display = i === chosenIdx ? '' : 'none';
+              if (i !== chosenIdx) {
+                const otherVid = it.querySelector('video');
+                if (otherVid) otherVid.pause();
+              }
+            });
+            const grid = pane.querySelector('.home-video-grid-2');
+            if (grid) grid.style.gridTemplateColumns = '1fr';
+          }
+        };
+      });
+    }
+  } else {
+    if (els.card) els.card.classList.remove('multi-video');
+    if (els.kicker) els.kicker.textContent = 'Pro Production Films · Screening';
+    if (els.tabs) {
+      els.tabs.innerHTML = '';
+      els.tabs.style.display = 'none';
+    }
+  }
+  
+  els.modal.classList.add('open');
+}
+
+function closeFilmModal() {
+  const els = getHomeVideoElements();
+  if (!els.modal) return;
+  els.modal.classList.remove('open');
+  if (els.card) els.card.classList.remove('multi-video');
+  if (els.tabs) {
+    els.tabs.innerHTML = '';
+    els.tabs.style.display = 'none';
+  }
+  // Pause any playing HTML5 videos
+  Object.keys(FILM_CACHE).forEach(k => {
+    if (FILM_CACHE[k]) {
+      const vids = FILM_CACHE[k].querySelectorAll('video');
+      vids.forEach(vid => vid.pause());
+    }
+  });
+}
+
+function attachFilmEvents() {
+  const playBtn = document.getElementById('bookPlayBtn');
+  if (playBtn) {
+    playBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openCurrentFilm();
+    };
+  }
+
+  const captionRow = document.getElementById('sbCaptionRow');
+  if (captionRow) {
+    captionRow.onclick = (e) => {
+      if (typeof turn !== 'undefined' && turn) return;
+      openCurrentFilm();
+    };
+    captionRow.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (typeof turn !== 'undefined' && turn) return;
+        openCurrentFilm();
+      }
+    };
+  }
+
+  const els = getHomeVideoElements();
+  if (els.closeBtn) {
+    els.closeBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeFilmModal();
+    };
+  }
+
+  if (els.modal) {
+    els.modal.onclick = (e) => {
+      if (!e.target.closest('.home-video-card')) {
+        closeFilmModal();
+      }
+    };
+  }
+
+  // Pre-warm initial film immediately
+  prewarmFilm(0);
+}
+
+attachFilmEvents();
+document.addEventListener('DOMContentLoaded', attachFilmEvents);
+
+window.addEventListener('keydown', (e) => {
+  const els = getHomeVideoElements();
+  if (e.key === 'Escape' && els.modal && els.modal.classList.contains('open')) {
+    closeFilmModal();
+  }
+});
+</script>
+</body>
+</html>
