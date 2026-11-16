@@ -194,10 +194,10 @@ export default function Footer() {
             {/* Contact details: Right-aligned on desktop */}
             <div className="mb-10 lg:text-right flex flex-col items-start lg:items-end gap-2">
               <a
-                href="mailto:connect@proproductionevents.in"
+                href="mailto:connect@proproductionfilms.in"
                 className="font-secondary text-xl sm:text-2xl md:text-3xl font-semibold text-[#ffffff] hover:text-[#c4a57b] transition-colors underline-offset-8 hover:underline block break-all sm:break-normal"
               >
-                connect@proproductionevents.in
+                connect@proproductionfilms.in
               </a>
 
               <div className="flex flex-wrap items-center gap-2.5 pt-0.5 text-xs sm:text-sm text-[#9c9183]">

@@ -21,8 +21,8 @@ const smoothEase = [0.25, 0.1, 0.25, 1] as const;
 const CONTACT_LINKS = [
   {
     icon: Mail,
-    label: "contact@proproductionfilms.com",
-    href: "mailto:contact@proproductionfilms.com",
+    label: "connect@proproductionfilms.in",
+    href: "mailto:connect@proproductionfilms.in",
   },
   {
     icon: Phone,
