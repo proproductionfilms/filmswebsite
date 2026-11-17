@@ -855,7 +855,7 @@ export default function ContactWithGlobe({
               ))}
             </div>
 
-            <div className="relative overflow-hidden h-52">
+            <div className="relative overflow-hidden h-44 sm:h-52">
               <GlobeWireframe
                 className="w-full aspect-square max-w-full absolute top-0 left-0"
                 variant="wireframesolid"
@@ -877,7 +877,7 @@ export default function ContactWithGlobe({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.0, delay: 0.35, ease: smoothEase }}
-            className="rounded-2xl border border-[#2b2721]/15 bg-[#fdfaf3]/90 backdrop-blur-md shadow-[0_12px_32px_rgba(43,39,33,0.08)] p-6 sm:p-8 flex flex-col justify-center min-h-[500px]"
+            className="rounded-2xl border border-[#2b2721]/15 bg-[#fdfaf3]/90 backdrop-blur-md shadow-[0_12px_32px_rgba(43,39,33,0.08)] p-5 sm:p-8 flex flex-col justify-center min-h-0 sm:min-h-[500px]"
           >
             <AnimatePresence mode="wait">
               {isSubmitted ? (
@@ -956,7 +956,7 @@ export default function ContactWithGlobe({
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-2.5 text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 transition-all duration-200"
+                        className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-2.5 text-base sm:text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 transition-all duration-200"
                       />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -968,7 +968,7 @@ export default function ContactWithGlobe({
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-2.5 text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 transition-all duration-200"
+                        className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-2.5 text-base sm:text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 transition-all duration-200"
                       />
                     </div>
                   </div>
@@ -983,7 +983,7 @@ export default function ContactWithGlobe({
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-2.5 text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 transition-all duration-200"
+                      className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-2.5 text-base sm:text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 transition-all duration-200"
                     />
                   </div>
 
@@ -997,7 +997,7 @@ export default function ContactWithGlobe({
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-3 text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 resize-none transition-all duration-200"
+                      className="w-full bg-[#f7f3ea]/90 border border-[#2b2721]/18 rounded-xl px-4 py-3 text-base sm:text-sm text-[#2b2721] outline-none focus:border-[#9a6a3e] focus:ring-2 focus:ring-[#9a6a3e]/15 resize-none transition-all duration-200"
                     />
                   </div>
 

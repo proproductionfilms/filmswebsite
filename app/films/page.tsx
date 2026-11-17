@@ -214,7 +214,7 @@ export default function FilmsPage() {
       <TopHeader />
 
       {/* Main Content Area: 3-column Card Grid */}
-      <section className="relative z-10 w-full pt-[92px] sm:pt-[98px] md:pt-[104px] pb-16 sm:pb-20 px-4 sm:px-6 md:px-8">
+      <section className="relative z-10 w-full pt-[78px] sm:pt-[98px] md:pt-[104px] pb-16 sm:pb-20 px-3 sm:px-6 md:px-8">
         <div className="max-w-[1400px] mx-auto w-full">
           {/* Section Heading: Animated Capital "FILMS" */}
           <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-7 md:mb-8">
@@ -231,7 +231,7 @@ export default function FilmsPage() {
                   },
                 },
               }}
-              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#2b2721] font-medium tracking-[0.22em] sm:tracking-[0.28em] uppercase flex items-center justify-center pl-[0.22em] sm:pl-[0.28em] select-none [-webkit-text-stroke:0.35px_currentColor]"
+              className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#2b2721] font-medium tracking-[0.16em] sm:tracking-[0.28em] uppercase flex items-center justify-center pl-[0.16em] sm:pl-[0.28em] select-none [-webkit-text-stroke:0.35px_currentColor]"
             >
               {"FILMS".split("").map((char, index) => (
                 <motion.span
@@ -301,28 +301,28 @@ export default function FilmsPage() {
                   <button
                     type="button"
                     onClick={(e) => openLightbox(idx, e)}
-                    className="absolute top-3.5 right-3.5 z-30 w-8 h-8 rounded-full bg-black/45 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 hover:scale-110 opacity-0 group-hover:opacity-100 transform-gpu will-change-transform transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 shadow-md cursor-pointer"
+                    className="absolute top-3.5 right-3.5 z-30 w-8 h-8 rounded-full bg-black/55 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/90 hover:text-white hover:bg-black/70 hover:scale-110 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transform-gpu will-change-transform transition-all duration-200 transform translate-y-0 sm:translate-y-1 sm:group-hover:translate-y-0 shadow-md cursor-pointer"
                     aria-label="Expand image"
                   >
                     <Maximize2 className="w-3.5 h-3.5" />
                   </button>
 
-                  {/* Center Play Button (appears smoothly on hover) */}
+                  {/* Center Play Button (visible on mobile touch, smoothly hovers on desktop) */}
                   <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                    <div className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/65 backdrop-blur-md border border-white/35 text-white shadow-[0_12px_36px_rgba(0,0,0,0.6)] opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transform-gpu will-change-transform transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-black/65 backdrop-blur-md border border-white/35 text-white shadow-[0_12px_36px_rgba(0,0,0,0.6)] opacity-90 sm:opacity-0 scale-90 sm:scale-75 sm:group-hover:opacity-100 sm:group-hover:scale-100 transform-gpu will-change-transform transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
                       {/* Ambient ring pulse on hover */}
                       <span className="absolute inset-0 rounded-full border border-white/25 animate-ping opacity-0 group-hover:opacity-50" />
                       {/* Play Icon */}
-                      <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-white text-white ml-1 transition-transform duration-200 group-hover:scale-110" />
+                      <Play className="w-5 h-5 sm:w-7 sm:h-7 fill-white text-white ml-0.5 sm:ml-1 transition-transform duration-200 group-hover:scale-110" />
                     </div>
                   </div>
 
-                  {/* Subtle Gradient Overlay on Hover with Title & Subtitle */}
-                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-left pointer-events-none">
-                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#d4af37] mb-1">
+                  {/* Subtle Gradient Overlay with Title & Subtitle (Always visible on mobile touch, hover on desktop) */}
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3.5 sm:p-5 text-left pointer-events-none">
+                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] text-[#d4af37] mb-0.5 sm:mb-1">
                       {card.subtitle}
                     </span>
-                    <h3 className="font-serif text-lg sm:text-xl text-[#f6efe2] font-normal leading-snug">
+                    <h3 className="font-serif text-base sm:text-xl text-[#f6efe2] font-normal leading-snug">
                       {card.title}
                     </h3>
                   </div>
@@ -351,7 +351,7 @@ export default function FilmsPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/60 backdrop-blur-md"
+                className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-5 md:p-8 bg-black/60 backdrop-blur-md"
                 onClick={closeVideoModal}
               >
                 <motion.div
@@ -359,7 +359,7 @@ export default function FilmsPage() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.95, opacity: 0 }}
                   transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.9)] border border-[#c4a472]/35 flex flex-col my-auto max-h-[92vh] ${
+                  className={`relative rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.9)] border border-[#c4a472]/35 flex flex-col my-auto max-h-[96vh] sm:max-h-[92vh] ${
                     activeModal.videos.length > 1
                       ? "w-full max-w-[1260px]"
                       : "w-full max-w-[960px]"
@@ -370,37 +370,37 @@ export default function FilmsPage() {
                   onClick={(e) => e.stopPropagation()}
                 >
               {/* Modal Header */}
-              <div className="flex items-center justify-between px-5 sm:px-7 py-4 border-b border-white/10 bg-[#1c1813] flex-shrink-0">
-                <div className="flex flex-col">
-                  <span className="text-[10px] sm:text-[11px] font-sans uppercase tracking-[0.22em] text-[#d4af37]">
+              <div className="flex items-center justify-between px-3 sm:px-7 py-3 sm:py-4 border-b border-white/10 bg-[#1c1813] flex-shrink-0 gap-2">
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[9px] sm:text-[11px] font-sans uppercase tracking-[0.22em] text-[#d4af37] truncate">
                     {activeModal.videos.length > 1
                       ? "PRO PRODUCTION FILMS · 2 FILMS"
                       : "PRO PRODUCTION FILMS · SCREENING"}
                   </span>
-                  <h3 className="text-base sm:text-xl md:text-2xl font-serif text-[#f6efe2] tracking-wide mt-0.5">
+                  <h3 className="text-sm sm:text-xl md:text-2xl font-serif text-[#f6efe2] tracking-wide mt-0.5 truncate">
                     {activeModal.title}
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                   {/* Tab switcher for 2-film modal matching Homepage Sketchbook */}
                   {activeModal.videos.length > 1 && (
-                    <div className="flex items-center p-1 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-mono tracking-wider">
+                    <div className="flex items-center p-0.5 sm:p-1 rounded-full bg-white/5 border border-white/10 text-[9px] sm:text-xs font-mono tracking-wider">
                       <button
                         type="button"
                         onClick={() => setMultiTab("all")}
-                        className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                        className={`px-2 sm:px-3 py-1 rounded-full transition-all cursor-pointer ${
                           multiTab === "all"
                             ? "bg-[#d4af37] text-black font-semibold shadow-sm"
                             : "text-white/70 hover:text-white"
                         }`}
                       >
-                        BOTH FILMS
+                        BOTH
                       </button>
                       <button
                         type="button"
                         onClick={() => setMultiTab(0)}
-                        className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                        className={`px-2 sm:px-3 py-1 rounded-full transition-all cursor-pointer ${
                           multiTab === 0
                             ? "bg-[#d4af37] text-black font-semibold shadow-sm"
                             : "text-white/70 hover:text-white"
@@ -411,7 +411,7 @@ export default function FilmsPage() {
                       <button
                         type="button"
                         onClick={() => setMultiTab(1)}
-                        className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                        className={`px-2 sm:px-3 py-1 rounded-full transition-all cursor-pointer ${
                           multiTab === 1
                             ? "bg-[#d4af37] text-black font-semibold shadow-sm"
                             : "text-white/70 hover:text-white"
@@ -425,7 +425,7 @@ export default function FilmsPage() {
                   <button
                     type="button"
                     onClick={closeVideoModal}
-                    className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 text-white/80 hover:text-white flex items-center justify-center transition-colors text-2xl font-light cursor-pointer border border-white/10 flex-shrink-0"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 text-white/80 hover:text-white flex items-center justify-center transition-colors text-xl sm:text-2xl font-light cursor-pointer border border-white/10 flex-shrink-0"
                     aria-label="Close video modal"
                   >
                     &times;
@@ -536,7 +536,7 @@ export default function FilmsPage() {
                   e.stopPropagation();
                   closeLightbox();
                 }}
-                className="absolute top-4 sm:top-6 right-4 sm:right-6 z-50 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-colors border border-white/15 cursor-pointer"
+                className="absolute top-3 sm:top-6 right-3 sm:right-6 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-colors border border-white/15 cursor-pointer"
                 aria-label="Close image modal"
               >
                 <X className="w-5 h-5" />
@@ -549,10 +549,10 @@ export default function FilmsPage() {
                   e.stopPropagation();
                   prevImage();
                 }}
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/15 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
+                className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/15 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
                 aria-label="Previous image"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
               {/* Next Button */}
@@ -562,10 +562,10 @@ export default function FilmsPage() {
                   e.stopPropagation();
                   nextImage();
                 }}
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/15 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
+                className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/15 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
                 aria-label="Next image"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
               {/* Lightbox Content Container */}

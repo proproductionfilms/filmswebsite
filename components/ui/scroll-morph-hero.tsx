@@ -382,7 +382,7 @@ export default function IntroAnimation() {
 
                             // A. Calculate Circle Position
                             const circleRadius = isMobile
-                                ? Math.min(minDimension * 0.38, 280)
+                                ? Math.min(minDimension * 0.35, 250)
                                 : Math.min(minDimension * 0.39, 365);
                             const circleAngle = (i / TOTAL_CARDS) * 360;
                             const circleRad = (circleAngle * Math.PI) / 180;
@@ -394,7 +394,7 @@ export default function IntroAnimation() {
 
                             // B. Calculate Bottom Arc Position
                             const baseRadius = Math.min(containerSize.width, containerSize.height * 1.5);
-                            const arcRadius = baseRadius * (isMobile ? 1.4 : 1.1);
+                            const arcRadius = baseRadius * (isMobile ? 1.35 : 1.1);
                             const arcApexY = containerSize.height * (isMobile ? 0.35 : 0.25);
                             const arcCenterY = arcApexY + arcRadius;
 
@@ -413,7 +413,7 @@ export default function IntroAnimation() {
                                 x: Math.cos(arcRad) * arcRadius + parallaxValue,
                                 y: Math.sin(arcRad) * arcRadius + arcCenterY,
                                 rotation: currentArcAngle + 90,
-                                scale: isMobile ? 1.3 : 1.6,
+                                scale: isMobile ? 1.08 : 1.6,
                             };
 
                             // C. Interpolate (Morph)
@@ -421,7 +421,7 @@ export default function IntroAnimation() {
                                 x: lerp(circlePos.x, arcPos.x, morphValue),
                                 y: lerp(circlePos.y, arcPos.y, morphValue),
                                 rotation: lerp(circlePos.rotation, arcPos.rotation, morphValue),
-                                scale: lerp(1, arcPos.scale, morphValue),
+                                scale: lerp(isMobile ? 0.82 : 1, arcPos.scale, morphValue),
                                 opacity: 1,
                             };
                         }

@@ -160,11 +160,11 @@ function EventCardItem({
             className="w-full h-full object-cover transform-gpu will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 pointer-events-none"
           />
 
-          {/* Center Play Button (Smooth GPU scale on hover) */}
+          {/* Center Play Button (Visible on touch, smooth GPU scale on hover) */}
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-            <div className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/65 backdrop-blur-md border border-white/35 text-white shadow-[0_12px_36px_rgba(0,0,0,0.6)] opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transform-gpu will-change-transform transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-black/65 backdrop-blur-md border border-white/35 text-white shadow-[0_12px_36px_rgba(0,0,0,0.6)] opacity-90 sm:opacity-0 scale-90 sm:scale-75 sm:group-hover:opacity-100 sm:group-hover:scale-100 transform-gpu will-change-transform transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
               <span className="absolute inset-0 rounded-full border border-white/25 animate-ping opacity-0 group-hover:opacity-50" />
-              <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-white text-white ml-1 transition-transform duration-200 group-hover:scale-110" />
+              <Play className="w-5 h-5 sm:w-7 sm:h-7 fill-white text-white ml-0.5 sm:ml-1 transition-transform duration-200 group-hover:scale-110" />
             </div>
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function EventsPage() {
       <TopHeader />
 
       {/* Main Content Area */}
-      <section className="relative z-10 w-full pt-[92px] sm:pt-[98px] md:pt-[104px] pb-16 sm:pb-20 px-4 sm:px-6 md:px-8">
+      <section className="relative z-10 w-full pt-[78px] sm:pt-[98px] md:pt-[104px] pb-16 sm:pb-20 px-3 sm:px-6 md:px-8">
         <div className="max-w-[1400px] mx-auto w-full">
           {/* Section Heading: Animated Capital "EVENTS" matching "FILMS" */}
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12">
@@ -295,7 +295,7 @@ export default function EventsPage() {
                   },
                 },
               }}
-              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#2b2721] font-medium tracking-[0.22em] sm:tracking-[0.28em] uppercase flex items-center justify-center pl-[0.22em] sm:pl-[0.28em] select-none [-webkit-text-stroke:0.35px_currentColor]"
+              className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#2b2721] font-medium tracking-[0.16em] sm:tracking-[0.28em] uppercase flex items-center justify-center pl-[0.16em] sm:pl-[0.28em] select-none [-webkit-text-stroke:0.35px_currentColor]"
             >
               {"EVENTS".split("").map((char, index) => (
                 <motion.span
@@ -389,13 +389,13 @@ export default function EventsPage() {
                 className="fixed inset-0 z-[99999] w-screen h-screen bg-black flex flex-col justify-between overflow-hidden select-none"
               >
                 {/* Top Minimal Floating Control Bar */}
-                <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-auto">
+                <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-8 py-3 sm:py-6 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-auto gap-2">
                   {/* Title & Brand */}
-                  <div className="flex items-center gap-3">
-                    <span className="hidden sm:inline-block px-2.5 py-1 rounded bg-[#63452c] text-[#f7f3ee] text-[10px] font-mono uppercase tracking-[0.2em] font-semibold border border-[#d4af37]/40 shadow-sm">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <span className="hidden sm:inline-block px-2.5 py-1 rounded bg-[#63452c] text-[#f7f3ee] text-[10px] font-mono uppercase tracking-[0.2em] font-semibold border border-[#d4af37]/40 shadow-sm flex-shrink-0">
                       PRO PRODUCTION EVENTS
                     </span>
-                    <span className="text-white/90 font-serif text-base sm:text-xl tracking-wide drop-shadow-md">
+                    <span className="text-white/90 font-serif text-sm sm:text-xl tracking-wide drop-shadow-md truncate">
                       {activeCard.heading}
                     </span>
                     <span className="hidden md:inline-block text-[#d4af37] text-xs font-mono tracking-widest uppercase opacity-80">
@@ -404,8 +404,8 @@ export default function EventsPage() {
                   </div>
 
                   {/* Action Controls */}
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <span className="text-xs font-mono text-white/50 tracking-wider">
+                  <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+                    <span className="text-[11px] sm:text-xs font-mono text-white/50 tracking-wider">
                       {activeVideoIdx !== null ? activeVideoIdx + 1 : 1} / {EVENT_CARDS.length}
                     </span>
 
@@ -413,13 +413,13 @@ export default function EventsPage() {
                     <button
                       type="button"
                       onClick={toggleNativeFullscreen}
-                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/15 cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95 shadow-lg"
+                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/15 cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95 shadow-lg"
                       aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
                     >
                       {isFullscreen ? (
-                        <Minimize2 className="w-4 h-4" />
+                        <Minimize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       ) : (
-                        <Maximize2 className="w-4 h-4" />
+                        <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       )}
                     </button>
 
@@ -427,10 +427,10 @@ export default function EventsPage() {
                     <button
                       type="button"
                       onClick={closeFullVideo}
-                      className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95 shadow-lg"
+                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95 shadow-lg"
                       aria-label="Close full page video"
                     >
-                      <X className="w-5 h-5" />
+                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>
@@ -439,20 +439,20 @@ export default function EventsPage() {
                 <button
                   type="button"
                   onClick={prevVideo}
-                  className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-black/55 hover:bg-black/90 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer backdrop-blur-md hover:scale-110 active:scale-95 shadow-2xl"
+                  className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/55 hover:bg-black/90 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer backdrop-blur-md hover:scale-110 active:scale-95 shadow-2xl"
                   aria-label="Previous video"
                 >
-                  <ChevronLeft className="w-7 h-7" />
+                  <ChevronLeft className="w-5 h-5 sm:w-7 sm:h-7" />
                 </button>
 
                 {/* Right Nav Arrow */}
                 <button
                   type="button"
                   onClick={nextVideo}
-                  className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-black/55 hover:bg-black/90 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer backdrop-blur-md hover:scale-110 active:scale-95 shadow-2xl"
+                  className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/55 hover:bg-black/90 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer backdrop-blur-md hover:scale-110 active:scale-95 shadow-2xl"
                   aria-label="Next video"
                 >
-                  <ChevronRight className="w-7 h-7" />
+                  <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" />
                 </button>
 
                 {/* Full Viewport Center Video Player */}

@@ -117,7 +117,7 @@ export default function Footer() {
             <div className="select-none pt-4 lg:pt-0">
               <h2
                 aria-label="PRO PRODUCTION FILMS"
-                className="font-koulen text-[15.5vw] sm:text-[12.5vw] lg:text-[8.4vw] xl:text-[8.8vw] uppercase leading-[0.80] tracking-tighter text-[#ffffff] select-none"
+                className="font-koulen text-[13vw] sm:text-[12.5vw] lg:text-[8.4vw] xl:text-[8.8vw] uppercase leading-[0.80] tracking-tighter text-[#ffffff] select-none"
               >
                 {/* Line 1: PRO */}
                 <div className="overflow-hidden pb-1 sm:pb-1.5">
@@ -274,8 +274,8 @@ export default function Footer() {
 
               {/* Column 2: Connect */}
               <div className="flex flex-col justify-start overflow-visible">
-                {/* Stamp Logo with Dynamic Apply Animation - shifted left */}
-                <div className="relative select-none overflow-visible -translate-x-4 sm:-translate-x-6 lg:-translate-x-10 xl:-translate-x-14">
+                {/* Stamp Logo with Dynamic Apply Animation */}
+                <div className="relative select-none overflow-visible translate-x-0 sm:-translate-x-6 lg:-translate-x-10 xl:-translate-x-14">
                   <div
                     key={stampKey}
                     onClick={handleRestamp}
@@ -296,7 +296,7 @@ export default function Footer() {
 
                     {/* Larger Stamp Image with slamming stamp animation */}
                     <div
-                      className="w-48 sm:w-56 md:w-64 lg:w-[275px] xl:w-[310px] h-auto transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3"
+                      className="w-36 sm:w-56 md:w-64 lg:w-[275px] xl:w-[310px] h-auto transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3"
                       style={
                         isStamped
                           ? {

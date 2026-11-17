@@ -63,8 +63,8 @@ export default function AboutPage() {
       <TopHeader />
 
       {/* Hero Section: Interactive 3D Values Morph */}
-      <section className="relative z-10 w-full flex flex-col items-center justify-center pt-[90px] pb-2">
-        <div className="relative w-full h-[calc(100vh-130px)] min-h-[720px] max-h-[980px] overflow-hidden">
+      <section className="relative z-10 w-full flex flex-col items-center justify-center pt-[78px] sm:pt-[90px] pb-2">
+        <div className="relative w-full h-[calc(100svh-100px)] min-h-[500px] sm:min-h-[640px] md:min-h-[720px] max-h-[980px] overflow-hidden">
           <IntroAnimation />
         </div>
       </section>
@@ -72,7 +72,7 @@ export default function AboutPage() {
       {/* SECTION: THE 4-PILLAR METHODOLOGY */}
       <section
         id="about-content"
-        className="relative z-10 w-full px-5 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-10 lg:py-12 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-[#2b2721]/10 bg-gradient-to-b from-transparent via-[#f3eee5]/60 to-transparent scroll-mt-14 overflow-visible"
+        className="relative z-10 w-full px-4 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-10 lg:py-12 min-h-0 sm:min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-[#2b2721]/10 bg-gradient-to-b from-transparent via-[#f3eee5]/60 to-transparent scroll-mt-14 overflow-visible"
       >
         <div className="max-w-7xl mx-auto w-full">
           {/* Section Header */}

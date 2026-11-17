@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "@designcodeio/threeui/style.css";
 import { GlobalNavigationBridge } from "@/components/GlobalNavigationBridge";
@@ -7,6 +7,13 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 export const metadata: Metadata = {
   title: "Pro Production Films",
   description: "Corporate Films / Industrial Documentaries / Institutional Stories",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#ece7dc",
 };
 
 export default function RootLayout({
